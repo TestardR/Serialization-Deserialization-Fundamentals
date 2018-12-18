@@ -1,22 +1,24 @@
-import pickle
+import yaml
 
-class MyUser(object): 
+
+class MyUser(object):
     def __init__(self, name):
-            self.name = name
+        self.name = name
+
 
 user = MyUser('Peter')
-serialized = pickle.dumps(user)
-filename = 'serialized.json'
+serialized = yaml.dump(user)
+filename = 'serialized.yaml'
 
 with open(filename, 'w') as file_object:
     file_object.write(serialized)
 
-filename = 'serialized.untrusted'
+filename = 'untrusted.yaml'
 with open(filename) as file_object:
     raw_data = file_object.read()
 
-try: 
-    deserialized = pickle.loads(raw_data)
+try:
+    deserialized = yaml.load(raw_data)
     print(deserialized.name)
-except: 
+except:
     print('Error during deserialization')
