@@ -11,9 +11,12 @@ filename = 'serialized.json'
 with open(filename, 'w') as file_object:
     file_object.write(serialized)
 
+filename = 'serialized.untrusted'
 with open(filename) as file_object:
     raw_data = file_object.read()
 
-deserialized = pickle.loads(raw_data)
-print(deserialized.name)
-
+try: 
+    deserialized = pickle.loads(raw_data)
+    print(deserialized.name)
+except: 
+    print('Error during deserialization')
